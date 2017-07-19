@@ -1,0 +1,26 @@
+Create Lambda Function learnEnglishNodejs from file learnEnglishNodejs.js
+Create new Lex Bot titled “SayItWithUs”
+Add new Intent LearnNewEnglishWords
+Add new Slot Type AnswerValue with description “Just users answer” and Value “Info from user”
+Add new Slot Type WordDomains with description “Available domain types” and Value “Info from user”
+Add Sample utterances: “I would like to learn new English words”
+Set Initialization and validation code hook, select learnEnglishNodejs function
+Add Slot WordDomain, type WordDomains. Setup it’s Prompt as “What domain you prefer to learn words from?” and corresponding utterances as “I would like to learn words from {WordDomain} domain”
+Add Slot UserAnswer, type AnswerValue. Setup it’s Prompt as “OK, let's learn words from the domain "{WordDomain}". Say "stop" at any time if it's enough for today. The new word is "[wordToLearn]". It means [wordDefinition1]. Repeat please: [wordToLearn]”
+Select AWS Lambda function as Fulfillment, choose learnEnglishNodejs function
+Save intent
+Build Bot
+
+Test the Bot via console:
+Enter “I would like to learn new English words”
+Bot answers: “Please, provide us with word domain”
+Enter: “video”
+Bot answers: “OK, let's learn words from the domain "video". Say "stop" at any time if it's enough for today. The new word is "aspect ratio". It means the ratio of the width to the height of an image or screen.. Repeat please: aspect ratio”
+Enter (via text or voice): “aspect ratio”
+Satisfied Bot will answer: “Yeah! Let's learn next word. It is "betacam". It's definition is: a high-quality format for video cameras and recorders. Repeat it please: "betacam"”
+Enter (via text or voice): “abcd”
+Unsatisfied Bot will answer: “I did not understand that, please repeat "betacam"”
+Enter (via text or voice): “betacam”
+Satisfied Bot will answer: “Yeah! Let's learn next word. It is "betamax". It's definition is: a format for video recorders, now largely obsolete.. Repeat it please: "betamax"
+Enter (via text or voice): “stop”
+Bot should say: “Well, thank you, good bye!”
